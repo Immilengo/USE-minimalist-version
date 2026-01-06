@@ -7,58 +7,57 @@
 </head>
 <body>
 
-    <div class="auth-container">
-        <div class="card">
+<div class="auth-container">
+  <div class="card">
 
-            <!--Login-->
-            <div id="loginView">
-                <h1>USE</h1>
-                <input type="email" name="loginEmail" id="loginEmail" placeholder="Email">
-                <input type="password" name="LoginPassword" id="LoginPassword" placeholder="Password">
-                <button onclick="login()">Login</button>
-                <p class="link" onclick="showRegister()">Create account</p>
-            </div>
-
-            <!--Register-->
-            <div id="registerView" class="hidden">
-                <h1>Create Account</h1>
-                <input type="text" name="regName" id="regName" placeholder="Name">
-                <input type="email" name="regEmail" id="regEmail" placeholder="Email">
-                <input type="password" name="regPassword" id="regPassword">
-                <button onclick="nextStep('level')">Continue</button>
-                <p class="link" onclick="showLogin()">Back to Login</p>
-            </div>
-
-            <!--Level-->
-            <div id="levelView" class="hidden">
-                <h1>Select your level</h1>
-                <div class="option" onclick="selectLevel('beginner')">Beginner</div>
-                <div class="option" onclick="selectLevel('intemediare')">Intermediare</div>
-                <div class="option" onclick="selectLevel('advantage')">Advantage</div>
-                <div class="option" onclick="selectLevel('native')">Native</div>
-
-                <button onclick="nextStep('interest')">Continue</button>
-            </div>
-        
-
-        <!--Interests-->
-        <div id="interestsView" class="hidden">
-            <h1>Select Interests, at least 3</h1>
-
-            <div class="tags">
-                <span onclick="tooggleInterest(this)">Technology</span>
-                <span onclick="tooggleInterest(this)">Music</span>
-                <span onclick="tooggleInterest(this)">Movies</span>
-                <span onclick="tooggleInterest(this)">Sports</span>
-                <span onclick="tooggleInterest(this)">Business</span>
-                <span onclick="tooggleInterest(this)">Travel</span>
-            </div>
-
-            <button onclick="register()">Finish</button>
-        </div>
-        </div>
+    <!-- LOGIN -->
+    <div id="loginView">
+      <h2>Welcome Back</h2>
+      <input id="loginEmail" placeholder="Email" />
+      <input id="loginPassword" type="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p class="link" onclick="showRegister()">Create account</p>
     </div>
 
+    <!-- REGISTER -->
+    <div id="registerView" class="hidden">
+      <h2>Create Account</h2>
+      <input id="regName" placeholder="Name" />
+      <input id="regEmail" placeholder="Email" />
+      <input id="regPassword" type="password" placeholder="Password" />
+      <button onclick="nextStep('level')">Continue</button>
+      <p class="link" onclick="showLogin()">Back to login</p>
+    </div>
+
+    <!-- LEVEL -->
+    <div id="levelView" class="hidden">
+      <h2>Select your level</h2>
+
+      <div class="option" onclick="selectLevel('beginner')">Beginner</div>
+      <div class="option" onclick="selectLevel('intermediate')">Intermediate</div>
+      <div class="option" onclick="selectLevel('native')">Native</div>
+
+      <button onclick="nextStep('interests')">Continue</button>
+    </div>
+
+    <!-- INTERESTS -->
+    <div id="interestsView" class="hidden">
+      <h2>Select interests (min 3)</h2>
+
+      <div class="tags">
+        <span onclick="toggleInterest(this)">Technology</span>
+        <span onclick="toggleInterest(this)">Music</span>
+        <span onclick="toggleInterest(this)">Movies</span>
+        <span onclick="toggleInterest(this)">Sports</span>
+        <span onclick="toggleInterest(this)">Business</span>
+        <span onclick="toggleInterest(this)">Travel</span>
+      </div>
+
+      <button onclick="register()">Finish</button>
+    </div>
+
+  </div>
+</div>
 
 <script src="/javascript/auth.js"></script>
 </body>

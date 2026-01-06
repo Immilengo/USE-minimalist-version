@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background: linear-gradient(135deg, #2563eb, #3d74d9);
     font-family: Arial, sans-serif, Helvetica;
 }
 
@@ -59,7 +59,7 @@ button:hover{
     display: none;
 }
 
-.ption{
+.option{
     padding: 14px;
     border-radius: 12px;
     background: #f1f5f9;
@@ -70,7 +70,7 @@ button:hover{
     font-weight: 600;
 }
 
-.ption.selected{
+.option.selected{
     background: #2563eb;
     color: white;
 }
