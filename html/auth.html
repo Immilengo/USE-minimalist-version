@@ -13,14 +13,17 @@
 <div class="auth-container">
   <div class="card">
 
-    <!-- LOGIN -->
     <div id="loginView">
       <h2>Welcome Back</h2>
-      <input id="loginEmail" placeholder="Email" />
-      <input id="loginPassword" type="password" placeholder="Password" />
+        <i class="bx bx-envelope"></i>
+        <input id="loginEmail" placeholder="Email" />
+
+        <i class="bx bx-lock-alt"></i>
+        <input id="loginPassword" type="password" placeholder="Password" />
       <button onclick="login()">Login</button>
       <p class="link" onclick="showRegister()">Create account</p>
-    </div>
+  </div>
+
 
     <!-- REGISTER -->
     <div id="registerView" class="hidden">
@@ -38,9 +41,11 @@
 
       <div class="option" onclick="selectLevel('beginner')">Beginner</div>
       <div class="option" onclick="selectLevel('intermediate')">Intermediate</div>
+      <div class="option" onclick="selectLevel('advantage')">Advantage</div>
       <div class="option" onclick="selectLevel('native')">Native</div>
 
       <button onclick="nextStep('interests')">Continue</button>
+      <p class="link" onclick="showRegister()">Back to Create Account</p>
     </div>
 
     <!-- INTERESTS -->
@@ -57,6 +62,7 @@
       </div>
 
       <button onclick="register()">Finish</button>
+      <p class="link" onclick="showSelectLevel()">Back to Select your level</p>
     </div>
 
   </div>
