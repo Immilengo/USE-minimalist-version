@@ -59,15 +59,43 @@
                 <button class="filter">Beginner</button>
                 <button class="filter">Intermediate</button>
                 <button class="filter">Advanced</button>
+                <button class="filter">Similar interests</button>
+                <button class="filter">available for Call</button>
             </div>
         </header>
 
-        <!-- EMPTY STATE -->
-        <section class="empty-state">
-            <i class='bx bx-user-x'></i>
-            <h3>No users found</h3>
-            <p>Try another filter or search</p>
-        </section>
+            <div class="user-card">
+        <div class="user-card-header">
+            <div class="user-avatar">
+            <img src="${user.avatar}" alt="${user.name}">
+            ${user.online ? '<span class="online-indicator"></span>' : ''}
+            </div>
+
+            <div class="user-info">
+            <div class="user-name">${user.name}</div>
+            <div class="user-meta">
+                <span class="fi fi-${user.country}"></span>
+                <span class="user-level ${user.level}">
+                ${user.level.charAt(0).toUpperCase() + user.level.slice(1)}
+                </span>
+            </div>
+            </div>
+        </div>
+
+        <div class="user-interests">
+            ${user.interests.map(i => `<span class="interest-tag">${i}</span>`).join('')}
+        </div>
+
+        <div class="user-stats">
+            <span><i class="fas fa-clock"></i> ${user.avgMinutes} min avg</span>
+            <span><i class="fas fa-star"></i> ${user.rating}</span>
+        </div>
+
+        <button class="btn-call" onclick="initiateCall()">
+            <i class="fas fa-phone"></i>
+            Start Call
+        </button>
+        </div>
 
       
     </main>

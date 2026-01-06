@@ -101,6 +101,133 @@ body {
     flex: 1;
     padding: 20px;
 }
+/*=============================*/
+.user-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.15);
+}
+
+/* Header */
+.user-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Avatar */
+.user-avatar {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2563eb;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background: #22c55e;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* Info */
+.user-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.user-level {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #2563eb;
+}
+
+/* Interests */
+.user-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.interest-tag {
+  background: #f1f5f9;
+  color: #2563eb;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Stats */
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+.user-stats i {
+  color: #2563eb;
+  margin-right: 4px;
+}
+
+/* Call Button */
+.btn-call {
+  width: 100%;
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-call:hover {
+  background: #1e40af;
+  transform: scale(1.02);
+}
+
 
 /* =========================
    HOME
@@ -211,12 +338,17 @@ body {
 
 .filter {
     background: #f1f5f9;
-    border: none;
+    border: 1.5px solid rgb(220, 219, 219);
     padding: 8px 14px;
     border-radius: 999px;
     font-size: 0.8rem;
     cursor: pointer;
     white-space: nowrap;
+}
+.filter:hover{
+    transform: scale(1.2);
+    background-color: #2563eb;
+    color: white;
 }
 
 .filter.active {

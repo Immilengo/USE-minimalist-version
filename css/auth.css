@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2563eb, #3d74d9);
+    font-family: Arial, sans-serif, Helvetica;
+}
+
+.auth-container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    background: white;
+    width: 360px;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0);
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+button{
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #1e40af;
+}
+
+.link{
+    margin-top: 12px;
+    text-align: center;
+    color: #2563eb;
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+.option{
+    padding: 14px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    margin-bottom: 10px;
+    cursor: pointer;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+}
+
+.option.selected{
+    background: #2563eb;
+    color: white;
+}
+
+.tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags span{
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.tags span.selected {
+  background: #2563eb;
+  color: white;
+}
