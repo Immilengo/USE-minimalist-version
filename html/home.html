@@ -1,100 +1,214 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>United States of English | USE</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/css/home.css">
+  <meta charset="UTF-8" />
+  <title>USE – Learn English by Speaking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/home.css" />
 </head>
-<body>
+<body>  <!-- Header -->
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <!-- Logo -->
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <span>USE<span class="dot">.</span></span>
+      </div>
 
-<!-- HEADER -->
-<header class="header">
+      <!-- Nav links centralizados -->
+      <nav class="nav desktop-nav">
+        <a href="#available">Available Now</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+
+      <!-- Botão Log In -->
+      <div class="login-btn desktop-only">
+        <a href="auth.html" class="btn ghost">Log In</a>
+      </div>
+
+      <!-- Menu Hambúrguer (mobile) -->
+      <button class="menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <nav class="mobile-nav">
+        <a href="#available">Available Now</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+      <div class="mobile-actions">
+        <a href="auth.html" class="btn ghost">Log In</a>
+     
+      </div>
+    </div>
+  </header>
+  
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content container">
+      <span class="badge">🌍 Join 10,000+ learners worldwide</span>
+      <h1>
+        Learn English by <span class="gradient-text">Speaking</span><br>
+        with Real People
+      </h1>
+      <p>
+        Connect with native speakers and fluent English users around the world.
+        Practice through <strong>video calls</strong>, <strong>voice messages</strong>,
+        and <strong>live conversations</strong> — not just text.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn hero-btn" id="startBtn">
+          Start Speaking Now <i class="fas fa-arrow-right"></i>
+        </button>
+        <button class="btn outline">See How It Works</button>
+      </div>
+
+      <div class="hero-features">
+        <div><i class="fas fa-video"></i> Video Calls</div>
+        <div><i class="fas fa-microphone"></i> Voice Messages</div>
+        <div><i class="fas fa-globe"></i> Global Community</div>
+        <div><i class="fas fa-user-check"></i> Native Speakers</div>
+      </div>
+    </div>
+
+    <!-- Floating Cards -->
+    <div class="floating call-card">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Sarah">
+      <div>
+        <p>Sarah is calling…</p>
+        <span>Native • USA 🇺🇸</span>
+      </div>
+    </div>
+    <div class="floating audio-card">
+      <i class="fas fa-microphone"></i> Recording…
+    </div>
+  </section>
+
+  <!-- AVAILABLE NOW -->
+  <section class="available-section" id="available">
     <div class="container">
-        <h1>United States of English</h1>
-        <p class="subtitle">Learn English by speaking with the world</p>
-        <div class="header-buttons">
-            <a href="login.html" class="btn login-btn"><i class='bx bx-log-in'></i> Login</a>
-            <a href="index.html" class="btn signup-btn" ><i class='bx bx-user-plus'></i> Join Now</a>
+      <div class="section-header">
+        <h2>Available Now</h2>
+        <p>These speakers are ready to talk right now!</p>
+      </div>
+      <div class="speakers-grid">
+        <!-- Speakers (mantidos iguais) -->
+        <div class="speaker-card online">
+          <div class="speaker-status"><span class="status-dot"></span> Online</div>
+          <div class="speaker-header">
+            <div class="speaker-flag">🇺🇸</div>
+            <h3>Sarah Mitchell</h3>
+            <p class="speaker-country">United States</p>
+          </div>
+          <div class="speaker-level"><span class="level-badge native">Native</span></div>
+          <div class="speaker-interests">
+            <span>Technology</span><span>Travel</span><span>Music</span>
+          </div>
+          <button class="btn call-btn"><i class="fas fa-phone-alt"></i> Call Now</button>
         </div>
+        <div class="speaker-card online">
+          <div class="speaker-status"><span class="status-dot"></span> Online</div>
+          <div class="speaker-header">
+            <div class="speaker-flag">🇬🇧</div>
+            <h3>James Wilson</h3>
+            <p class="speaker-country">United Kingdom</p>
+          </div>
+          <div class="speaker-level"><span class="level-badge native">Native</span></div>
+          <div class="speaker-interests">
+            <span>Sports</span><span>Movies</span><span>Cooking</span>
+          </div>
+          <button class="btn call-btn"><i class="fas fa-phone-alt"></i> Call Now</button>
+        </div>
+        <div class="speaker-card online">
+          <div class="speaker-status"><span class="status-dot"></span> Online</div>
+          <div class="speaker-header">
+            <div class="speaker-flag">🇦🇺</div>
+            <h3>Emma Thompson</h3>
+            <p class="speaker-country">Australia</p>
+          </div>
+          <div class="speaker-level"><span class="level-badge fluent">Fluent</span></div>
+          <div class="speaker-interests">
+            <span>Art</span><span>Photography</span><span>Nature</span>
+          </div>
+          <button class="btn call-btn"><i class="fas fa-phone-alt"></i> Call Now</button>
+        </div>
+        <div class="speaker-card online">
+          <div class="speaker-status"><span class="status-dot"></span> Online</div>
+          <div class="speaker-header">
+            <div class="speaker-flag">🇨🇦</div>
+            <h3>Michael Chen</h3>
+            <p class="speaker-country">Canada</p>
+          </div>
+          <div class="speaker-level"><span class="level-badge fluent">Fluent</span></div>
+          <div class="speaker-interests">
+            <span>Gaming</span><span>Science</span><span>Books</span>
+          </div>
+          <button class="btn call-btn"><i class="fas fa-phone-alt"></i> Call Now</button>
+        </div>
+      </div>
     </div>
-</header>
+  </section>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-text">
-        <h2>A community built to make you fluent</h2>
-        <p>
-            Connect with learners and native speakers globally. Improve your English
-            by speaking through audio, video calls, and interactive sessions.
-        </p>
-        <a href="signup.html" class="primary-btn"><i class='bx bx-play-circle'></i> Start Learning</a>
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>Learn by Speaking, Not Reading</h2>
+        <p>Unlike other platforms, USE focuses on real conversations. The more you speak, the faster you learn.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-video"></i></div><h3>Video Calls</h3><p>Face-to-face conversations with native speakers from around the world.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-microphone"></i></div><h3>Voice First</h3><p>Send audio messages and earn the right to text by speaking more.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-heart"></i></div><h3>Interest Matching</h3><p>Connect with people who share your hobbies and passions.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Global Community</h3><p>Learners and speakers from every corner of the world.</p></div>
+      </div>
     </div>
-    <div class="hero-media">
-        <img src="/images/hero-video-placeholder.png" alt="Video Call Mockup">
-    </div>
-</section>
+  </section>
 
-<!-- FEATURES / CONCEPT -->
-<section class="concept">
-    <h2>Why USE is different?</h2>
-    <div class="cards">
-        <div class="card">
-            <i class='bx bx-headphone'></i>
-            <h4>🎧 Speak First</h4>
-            <p>English is learned by speaking. Audio and video calls are the core of our platform.</p>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Start Speaking?</h2>
+        <p>Join thousands of learners who improved their English by actually speaking it.</p>
+        <div class="cta-stats">
+          <div class="stat"><span class="stat-number">10,000+</span><span class="stat-label">Active Learners</span></div>
+          <div class="stat"><span class="stat-number">500+</span><span class="stat-label">Native Speakers</span></div>
+          <div class="stat"><span class="stat-number">50+</span><span class="stat-label">Countries</span></div>
         </div>
-        <div class="card">
-            <i class='bx bx-globe'></i>
-            <h4>🌍 Global Connections</h4>
-            <p>Connect with native and fluent speakers worldwide based on common interests.</p>
-        </div>
-        <div class="card">
-            <i class='bx bx-message-square-dots'></i>
-            <h4>🚫 Less Text, More Voice</h4>
-            <p>Text messages are limited. Writing alone is not enough; speaking is key.</p>
-        </div>
-        <div class="card">
-            <i class='bx bx-bolt-circle'></i>
-            <h4>⚡ Real-Time Calls</h4>
-            <p>See who is available to talk right now — even if they are not your friends.</p>
-        </div>
+        <button class="btn hero-btn large"><a href="auth.html">Start Your First Conversation <i class="fas fa-arrow-right"></i></a></button>
+      </div>
     </div>
-</section>
+  </section>
+</main>
 
-<!-- NATIVE SUPPORT -->
-<section class="native">
-    <div class="native-text">
-        <h2>Native & Fluent Speakers Matter</h2>
-        <p>Native and fluent speakers guide thousands of learners worldwide as mentors and friends.</p>
-        <a href="signup.html" class="secondary-btn"><i class='bx bx-user-check'></i> Find Mentors</a>
-    </div>
-    <div class="native-media">
-        <img src="/images/native-support.png" alt="Native Speakers">
-    </div>
-</section>
-
-<!-- FOOTER -->
+<!-- Footer -->
 <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-about">
-            <h3>United States of English</h3>
-            <p>Learn English by speaking. Not by memorizing.</p>
-        </div>
-        <div class="footer-links">
-          
-            <a href="signup.html"><i class='bx bx-user-plus'></i> Join</a>
-            <a href="login.html"><i class='bx bx-log-in'></i> Login</a>
-        </div>
-        <div class="footer-social">
-            <a href="#"><i class='bx bxl-facebook'></i></a>
-            <a href="#"><i class='bx bxl-twitter'></i></a>
-            <a href="#"><i class='bx bxl-instagram'></i></a>
-        </div>
+  <div class="container footer-content">
+    <div class="footer-logo">
+      <i class="fas fa-globe"></i>
+      <span>United States of English</span>
     </div>
-    <p class="footer-copy">© 2025 United States of English — USE</p>
+    <nav class="footer-nav">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="copyright">© 2026 USE. All rights reserved.</p>
+  </div>
 </footer>
 
+<script src="../javascript/home.js"></script>
 </body>
 </html>
