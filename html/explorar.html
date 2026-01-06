@@ -72,43 +72,43 @@
             </div>
         </header>
 
-            <div class="user-card">
-        <div class="user-card-header">
-            <div class="user-avatar">
-            <img src="${user.avatar}" alt="${user.name}">
-            ${user.online ? '<span class="online-indicator"></span>' : ''}
+        <div class="user-card">
+            <div class="user-card-header">
+                <div class="user-avatar">
+                    <img src="/static/img/gato.jfif" alt="Elisabeth">
+                    <span class="online-indicator"></span>
+                </div>
+
+                <div class="user-info">
+                    <div class="user-name">Elisabeth Milengo</div>
+                    <div class="user-meta">
+                        <span class="flag">🇦🇴</span>
+                        <span class="user-level">
+                            Native
+                        </span>
+                    </div>
+                </div>
             </div>
 
-            <div class="user-info">
-            <div class="user-name">${user.name}</div>
-            <div class="user-meta">
-                <span class="fi fi-${user.country}"></span>
-                <span class="user-level ${user.level}">
-                ${user.level.charAt(0).toUpperCase() + user.level.slice(1)}
-                </span>
+            <div class="user-interests">
+                <span class="interest-tag">Sports</span>
+                <span class="interest-tag">Technology</span>
+                <span class="interest-tag">Programming</span>
             </div>
+
+            <div class="user-stats">
+                <span><i class="fas fa-clock"></i> 45 min avg</span>
+                <span><i class="fas fa-star"></i> 4.6</span>
             </div>
-        </div>
 
-        <div class="user-interests">
-            ${user.interests.map(i => `<span class="interest-tag">${i}</span>`).join('')}
+            <button class="btn-call" onclick="initiateCall()">
+                <i class="fas fa-phone"></i>
+                Start Call
+            </button>
         </div>
-
-        <div class="user-stats">
-            <span><i class="fas fa-clock"></i> ${user.avgMinutes} min avg</span>
-            <span><i class="fas fa-star"></i> ${user.rating}</span>
-        </div>
-
-        <button class="btn-call" onclick="initiateCall()">
-            <i class="fas fa-phone"></i>
-            Start Call
-        </button>
-        </div>
-
-      
+     
     </main>
 
 </div>
-
 </body>
 </html>
