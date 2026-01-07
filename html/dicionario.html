@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dictionary</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/dicionario.css" />
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR / MENU -->
+  <aside class="sidebar">
+      <div class="logo">U</div>
+
+      <nav class="menu">
+          <a href="index.html">
+              <i class='bx bx-home'></i>
+              <span>Home</span>
+          </a>
+
+          <a href="explore.html">
+              <i class='bx bx-search-alt'></i>
+              <span>Explore</span>
+          </a>
+
+          <a href="chat.html">
+              <i class='bx bx-chat'></i>
+              <span>Chat</span>
+          </a>
+
+          <a class="active" href="dictionary.html">
+              <i class='bx bx-book'></i>
+              <span>Dictionary</span>
+          </a>
+
+      </nav>
+
+      <div class="user">
+          <div class="avatar" id="sidebarAvatar">P</div>
+      </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <section class="dictionary-section">
+      <h2>Dictionary</h2>
+
+      <div class="dictionary-card">
+        <!-- ADICIONAR PALAVRA -->
+        <div class="form-group">
+          <label for="wordInput">Enter a word (English)</label>
+          <input type="text" id="wordInput" placeholder="e.g., Hello" />
+        </div>
+
+        <div class="form-group">
+          <label for="translationInput">Translation (Portuguese)</label>
+          <input type="text" id="translationInput" placeholder="e.g., Olá" />
+        </div>
+
+        <button id="addWordBtn">Add / Save</button>
+        <button id="translateBtn">Translate</button>
+      </div>
+
+      <div class="dictionary-list">
+        <h3>Saved Words</h3>
+        <ul id="wordsList"></ul>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="../javascript/dicionario.js"></script>
+</body>
+</html>

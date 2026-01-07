@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>English Learning Chat</title>
-  <link rel="stylesheet" href="../css/chat.css">
+
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/chat.css" />
 </head>
 <body>
-  <div class="chat-container">
 
-    <!-- Sidebar de conversas -->
-    <aside class="sidebar">
-      <h2>Conversations</h2>
-      <div class="conversations" id="conversations"></div>
-      <input type="text" id="newConversation" placeholder="New conversation name">
-      <button id="createConversationBtn">Create</button>
-    </aside>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">U</div>
 
-    <!-- Chat principal -->
-    <main class="chat-main">
-      <div class="chat-header" id="chatHeader">Select a conversation</div>
-      <div class="chat-messages" id="chatMessages"></div>
-      <div class="chat-input">
-        <input type="text" id="messageInput" placeholder="Type your message..." disabled>
-        <button id="sendMessageBtn" disabled>Send</button>
+    <nav class="menu">
+      <a href="index.html">
+          <i class='bx bx-home'></i>
+          <span>Home</span>
+      </a>
+
+      <a class="active" href="explore.html">
+          <i class='bx bx-search-alt'></i>
+          <span>Explore</span>
+      </a>
+
+      <a href="chat.html">
+          <i class='bx bx-chat'></i>
+          <span>Chat</span>
+      </a>
+
+      <a href="perfil.html">
+          <i class='bx bx-user'></i>
+          <span>Profile</span>
+      </a>
+
+      <a class="active" href="dicionario.html">
+          <i class='bx bx-book'></i>
+          <span>Dictionary</span>
+      </a>
+  </nav>
+    <div class="user">
+        <div class="avatar">P</div>
+    </div>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+    <!-- CHAT PRINCIPAL -->
+    <section class="chat-main">
+
+      <!-- CARD DE CONVERSAS -->
+      <div class="chat-cards" id="chatCards">
+        <div class="cards-header">
+          <h2>Your conversations</h2>
+          <div class="new-chat">
+            <input type="text" id="newConversation" placeholder="New conversation" />
+            <button id="createConversationBtn">+</button>
+          </div>
+        </div>
+
+        <div class="cards-grid" id="conversations"></div>
       </div>
-    </main>
 
-  </div>
+      <!-- CHAT ABERTO -->
+      <div class="chat-window hidden" id="chatWindow">
+        <div class="chat-header" id="chatHeader"></div>
+        <div class="chat-messages" id="chatMessages"></div>
 
-  <script src="../javascript/chat.js"></script>
+        <div class="chat-input">
+          <input type="text" id="messageInput" placeholder="Type your message..." />
+          <button id="sendMessageBtn">Send</button>
+        </div>
+      </div>
+
+    </section>
+
+ 
+</div>
+
+<script src="../javascript/chat.js"></script>
+<script src="../javascript/listUsers.js"></script>
 </body>
 </html>
