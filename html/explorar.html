@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/css/explorar.css">
+    <link rel="stylesheet" href="/css/user_load.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -57,22 +58,22 @@
             <!-- SEARCH -->
             <div class="search-box">
                 <i class='bx bx-search'></i>
-                <input type="text" placeholder="Search by name or country">
+                <input id="searchInput" type="text" placeholder="Search by name or country">
             </div>
 
-            <!-- FILTERS -->
+                        <!-- FILTERS -->
             <div class="filters">
-                <button class="filter active">All</button>
-                <button class="filter">Native</button>
-                <button class="filter">Beginner</button>
-                <button class="filter">Intermediate</button>
-                <button class="filter">Advanced</button>
-                <button class="filter">Similar interests</button>
-                <button class="filter">available for Call</button>
+                <button class="filter active" data-filter="all">All</button>
+                <button class="filter" data-filter="native">Native</button>
+                <button class="filter" data-filter="beginner">Beginner</button>
+                <button class="filter" data-filter="intermediate">Intermediate</button>
+                <button class="filter" data-filter="advanced">Advanced</button>
+                <button class="filter" data-filter="similar">Similar interests</button>
+                <button class="filter" data-filter="available">Available for Call</button>
             </div>
         </header>
 
-        <div class="user-card">
+        <div class="user-card" style="display: none;">
             <div class="user-card-header">
                 <div class="user-avatar">
                     <img src="/static/img/gato.jfif" alt="Elisabeth">
@@ -106,9 +107,12 @@
                 Start Call
             </button>
         </div>
+
+        <div id="usersList" class="users-list"></div>
      
     </main>
 
 </div>
+<script src="/javascript/listUsers.js"></script>
 </body>
 </html>
