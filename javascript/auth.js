@@ -68,10 +68,13 @@ function register() {
 
   const tx = db.transaction("users", "readwrite");
   tx.objectStore("users").add(tempUser);
+
   tx.oncomplete = () =>{
     alert("Account created!");     
     switchView("loginView");
+    location.reload();
   }
+
 }
 
 function login() {
@@ -86,6 +89,7 @@ function login() {
     window.location.href="/html/index.html";
     alert("Welcome " + req.result.name);
   };
+  window.location.href="index.html";
 }
 
 function switchView(id) {

@@ -1,39 +1,65 @@
-body{
+/* ===== BODY ===== */
+body {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #2563eb, #3d74d9);
-    font-family: Arial, sans-serif, Helvetica;
-}
-
-.auth-container{
     min-height: 100vh;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.card{
-    background: white;
-    width: 360px;
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0);
-}
-
-h1{
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-input{
+    position: relative;
+  }
+  
+  /* ===== IMAGEM DE FUNDO ===== */
+  .bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* cobre toda a tela sem distorcer */
+    z-index: -2;
+  }
+  
+  /* Overlay escuro */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: -1;
+  }
+  
+  /* ===== CONTAINER ===== */
+  .auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+    position: relative;
+    z-index: 1; /* garante que fique acima da imagem e overlay */
+  }
+  
+  /* ===== CARD ===== */
+  .card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+  
+  /* ===== INPUTS ===== */
+  input {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
     border-radius: 10px;
     border: 1px solid #e5e7eb;
-}
-
-button{
+    font-size: 0.95rem;
+  }
+  
+  /* ===== BUTTONS ===== */
+  button {
     width: 100%;
     padding: 12px;
     border-radius: 12px;
@@ -42,54 +68,62 @@ button{
     color: white;
     font-weight: bold;
     cursor: pointer;
-}
-
-button:hover{
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
     background: #1e40af;
-}
-
-.link{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  
+  /* ===== LINKS ===== */
+  .link {
     margin-top: 12px;
     text-align: center;
     color: #2563eb;
     cursor: pointer;
-}
-
-.hidden{
-    display: none;
-}
-
-.option{
+    font-size: 0.9rem;
+  }
+  
+  .hidden { display: none; }
+  
+  /* ===== LEVEL & INTERESTS ===== */
+  .option {
     padding: 14px;
     border-radius: 12px;
     background: #f1f5f9;
     margin-bottom: 10px;
     cursor: pointer;
-    cursor: pointer;
     text-align: center;
     font-weight: 600;
-}
-
-.option.selected{
+    transition: 0.3s;
+  }
+  
+  .option.selected {
     background: #2563eb;
     color: white;
-}
-
-.tags{
+  }
+  
+  .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-}
-
-.tags span{
+    margin-bottom: 15px;
+  }
+  
+  .tags span {
     padding: 8px 14px;
     border-radius: 999px;
     background: #f1f5f9;
     cursor: pointer;
     font-size: 0.85rem;
-}
-
-.tags span.selected {
-  background: #2563eb;
-  color: white;
-}
+    transition: 0.3s;
+  }
+  
+  .tags span.selected {
+    background: #2563eb;
+    color: white;
+  }
+  
