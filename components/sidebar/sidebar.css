@@ -1,0 +1,142 @@
+/* =========================
+   BASE LAYOUT (OBRIGATÓRIO)
+========================= */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 90px;
+  min-height: 100vh; /* 👈 garante fundo até em baixo */
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  width: 42px;
+  height: 42px;
+  background: #2563eb;
+  color: white;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+/* =========================
+   MENU
+========================= */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1; /* 👈 empurra o user para baixo */
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6b7280;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  transition: 0.2s;
+}
+
+.menu a i {
+  font-size: 22px;
+}
+
+.menu a span {
+  font-size: 0.85rem;
+}
+
+.menu a.active,
+.menu a:hover {
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+/* =========================
+   USER
+========================= */
+.user {
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   MOBILE (BOTTOM NAV)
+========================= */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 64px;
+    width: 100%;
+
+    flex-direction: row;
+    justify-content: space-around;
+
+    border-top: 1px solid #e5e7eb;
+    border-right: none;
+    z-index: 100;
+  }
+
+  .logo,
+  .user {
+    display: none;
+  }
+
+  .menu {
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 1;
+  }
+
+  .menu a span {
+    display: none;
+  }
+}

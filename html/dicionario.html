@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="app">
+
   <!-- SIDEBAR / MENU -->
   <aside class="sidebar">
       <div class="logo">U</div>
@@ -48,6 +49,7 @@
       </div>
   </aside>
 
+
   <!-- MAIN CONTENT -->
   <main class="content">
     <section class="dictionary-section">
@@ -78,5 +80,9 @@
 </div>
 
 <script src="../javascript/dicionario.js"></script>
+<script type="module">
+    import { loadSidebar } from "/components/sidebar/sidebar.js";
+    loadSidebar("explorar");
+  </script>
 </body>
 </html>

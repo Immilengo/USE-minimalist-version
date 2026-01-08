@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="app">
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
       <div class="logo">U</div>
@@ -48,6 +49,7 @@
           <div class="avatar" id="sidebarAvatar">P</div>
       </div>
   </aside>
+
 
   <!-- MAIN CONTENT -->
   <main class="content">
@@ -105,5 +107,9 @@
 </div>
 
 <script src="../javascript/perfil.js"></script>
+<script type="module">
+    import { loadSidebar } from "/components/sidebar/sidebar.js";
+    loadSidebar("explorar");
+  </script>
 </body>
 </html>

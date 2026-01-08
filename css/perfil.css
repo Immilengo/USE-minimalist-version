@@ -150,71 +150,44 @@ body {
 
 #saveBtn:hover { 
     background: #1d4ed8; 
-}@media (min-width: 768px) {
-    .app {
-      flex-direction: row;
-    }
-  
-    .sidebar {
-      width: 150px;
-    }
-  
-    .menu {
-      flex-direction: column;
-      flex: 1;
-    }
-  
-    .menu a {
-      justify-content: flex-start;
-    }
-  
-    .content {
-      flex: 1;
-      padding: 32px;
-    }
-  }@media (max-width: 767px) {
-    .app {
-      flex-direction: column;
-    }
-  
-    .sidebar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      flex-direction: row;
-      justify-content: space-around;
-      border-top: 1px solid #e5e7eb;
-      border-right: none;
-      z-index: 100;
-    }
-  
-    .logo,
-    .user {
-      display: none;
-    }
-  
-    .menu {
-      flex: 1;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-  
-    .menu a {
-      flex-direction: column;
-      padding: 6px 0;
-      gap: 4px;
-    }
-  
-    .menu a span {
-      font-size: 0.7rem;
-    }
-  
-    .content {
-      padding: 20px;
-      padding-bottom: 90px; /* espaço para o menu */
-    }
+}
+
+
+/* =========================
+ DESKTOP / TABLET
+========================= */
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
   }
-  
-  
+
+  .sidebar {
+    width: 90px;
+    border-right: 1px solid #e5e7eb;
+  }
+
+  .menu {
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .menu a {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+
+  .menu a span {
+    font-size: 0.85rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .content {
+    padding: 32px;
+    padding-bottom: 32px;
+  }
+}
