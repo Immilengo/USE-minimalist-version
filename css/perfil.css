@@ -155,42 +155,42 @@ body {
     background: #1d4ed8; 
 }
 
-/* ==========================
-   MOBILE → MENU EM BAIXO
-========================== */
-@media (max-width: 767px) {
-    .app {
-        flex-direction: column;
-    }
 
-    .sidebar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 64px;
-        flex-direction: row;
-        justify-content: space-around;
-        border-top: 1px solid #e5e7eb;
-        border-right: none;
-        z-index: 100;
-        padding: 0;
-    }
+/* =========================
+ DESKTOP / TABLET
+========================= */
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
 
-    .logo,
-    .user {
-        display: none;
-    }
+  .sidebar {
+    width: 90px;
+    border-right: 1px solid #e5e7eb;
+  }
 
-    .menu {
-        flex: 1;
-        justify-content: space-around;
-        gap: 0;
-    }
+  .menu {
+    flex-direction: column;
+    flex: 1;
+  }
 
-    .menu a {
-        flex-direction: column;
-        padding: 0;
-        margin: 0;
-    }
+  .menu a {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+
+  .menu a span {
+    font-size: 0.85rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .content {
+    padding: 32px;
+    padding-bottom: 32px;
+  }
 }
