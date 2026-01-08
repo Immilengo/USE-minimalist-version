@@ -226,7 +226,7 @@ body {
 ====================== */
 @media (min-width: 768px) {
   .sidebar {
-    width: 90px;
+    width: 150px;
   }
 
   .menu {
