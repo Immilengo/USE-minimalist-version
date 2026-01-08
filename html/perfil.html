@@ -9,41 +9,8 @@
 </head>
 <body>
 <div class="app">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-      <div class="logo">U</div>
-
-      <nav class="menu">
-          <a href="index.html">
-              <i class='bx bx-home'></i>
-              <span>Home</span>
-          </a>
-
-          <a href="explore.html">
-              <i class='bx bx-search-alt'></i>
-              <span>Explore</span>
-          </a>
-
-          <a href="chat.html">
-              <i class='bx bx-chat'></i>
-              <span>Chat</span>
-          </a>
-
-          <a class="active" href="perfil.html">
-              <i class='bx bx-user'></i>
-              <span>Profile</span>
-          </a>
-
-          <a class="active" href="dicionario.html">
-            <i class='bx bx-book'></i>
-            <span>Dictionary</span>
-        </a>
-      </nav>
-
-      <div class="user">
-          <div class="avatar" id="sidebarAvatar">P</div>
-      </div>
-  </aside>
+  <!-- SIDEBAR  -->
+  <div id="sidebar-container"></div>
 
   <!-- MAIN CONTENT -->
   <main class="content">
@@ -101,5 +68,9 @@
 </div>
 
 <script src="../javascript/perfil.js"></script>
+<script type="module">
+    import { loadSidebar } from "/components/sidebar/sidebar.js";
+    loadSidebar("explorar");
+  </script>
 </body>
 </html>
