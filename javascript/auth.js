@@ -66,15 +66,17 @@ function register() {
     return;
   }
 
+  tempUser.online = true;
+  tempUser.avatar = "/static/img/default-avatar.png";
+
   const tx = db.transaction("users", "readwrite");
   tx.objectStore("users").add(tempUser);
 
-  tx.oncomplete = () =>{
-    alert("Account created!");     
+  tx.oncomplete = () => {
+    alert("Account created!");
     switchView("loginView");
     location.reload();
-  }
-
+  };
 }
 
 function login() {
@@ -82,15 +84,33 @@ function login() {
   const req = tx.objectStore("users").get(loginEmail.value);
 
   req.onsuccess = () => {
-    if (!req.result || req.result.password !== loginPassword.value) {
+    const user = req.result;
+
+    if (!user || user.password !== loginPassword.value) {
       alert("Invalid credentials");
       return;
     }
-    window.location.href="/html/index.html";
-    alert("Welcome " + req.result.name);
+
+    // ❌ NUNCA salvar password no localStorage
+    const loggedUser = {
+      name: user.name,
+      email: user.email,
+      level: user.level,
+      interests: user.interests,
+      online: true
+    };
+
+    // ✅ salva user logado
+    localStorage.setItem(
+      "loggedUser",
+      JSON.stringify(loggedUser)
+    );
+
+    alert("Welcome " + user.name);
+    window.location.href = "/html/index.html";
   };
-  window.location.href="index.html";
 }
+
 
 function switchView(id) {
   document.querySelectorAll(".card > div").forEach(v => v.classList.add("hidden"));
