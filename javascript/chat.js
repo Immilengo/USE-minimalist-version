@@ -1,130 +1,70 @@
-let conversations = JSON.parse(localStorage.getItem("conversations")) || [];
-let currentChatId = null;
+let chatAtual = null;
+let chats = JSON.parse(localStorage.getItem('chats')) || {};
 
-const cardsContainer = document.getElementById("conversations");
-const chatCards = document.getElementById("chatCards");
-const chatWindow = document.getElementById("chatWindow");
-const chatHeader = document.getElementById("chatHeader");
-const chatMessages = document.getElementById("chatMessages");
-const messageInput = document.getElementById("messageInput");
-const sendMessageBtn = document.getElementById("sendMessageBtn");
+function abrirChat(usuario) {
+  chatAtual = usuario;
+  document.getElementById('chatUser').innerText = usuario;
+  document.getElementById('chatWindow').classList.remove('hidden');
+  document.getElementById('noChat').classList.add('hidden');
 
-function save() {
-  localStorage.setItem("conversations", JSON.stringify(conversations));
+  renderMensagens();
 }
 
-/* RENDER CONVERSATIONS */
-function renderConversations() {
-  cardsContainer.innerHTML = "";
+function enviarMensagem() {
+  const input = document.getElementById('messageInput');
+  const texto = input.value.trim();
+  if (!texto) return;
 
-  if (conversations.length === 0) {
-    cardsContainer.innerHTML = `<p style="color:#6b7280">No conversations yet</p>`;
-    return;
-  }
+  if (!chats[chatAtual]) chats[chatAtual] = [];
 
-  conversations.forEach(chat => {
-    const card = document.createElement("div");
-    card.className = "chat-card";
-    card.innerHTML = `
-      <div class="chat-card-header">
-        <h3>${chat.name}</h3>
-        <button class="delete-btn" title="Delete chat">✖</button>
+  chats[chatAtual].push({
+    texto,
+    autor: 'me',
+    id: Date.now()
+  });
+
+  salvar();
+  input.value = '';
+  renderMensagens();
+}
+
+function renderMensagens() {
+  const container = document.getElementById('messages');
+  container.innerHTML = '';
+
+  (chats[chatAtual] || []).forEach(msg => {
+    const div = document.createElement('div');
+    div.className = `message ${msg.autor}`;
+    div.innerHTML = `
+      ${msg.texto}
+      <div class="actions">
+        <i class='bx bx-trash' onclick="apagarMensagem(${msg.id})"></i>
       </div>
-      <small>${chat.messages.at(-1)?.text || "No messages yet"}</small>
     `;
-
-    card.querySelector("h3").onclick = () => openChat(chat.id);
-    card.querySelector("small").onclick = () => openChat(chat.id);
-
-    card.querySelector(".delete-btn").onclick = (e) => {
-      e.stopPropagation();
-      deleteChat(chat.id);
-    };
-
-    cardsContainer.appendChild(card);
+    container.appendChild(div);
   });
+
+  container.scrollTop = container.scrollHeight;
 }
 
-/* DELETE CHAT */
-function deleteChat(id) {
-  const chat = conversations.find(c => c.id === id);
-  if (!chat) return;
+function apagarMensagem(id) {
+  chats[chatAtual] = chats[chatAtual].filter(m => m.id !== id);
+  salvar();
+  renderMensagens();
+}
 
-  const confirmDelete = confirm(`Delete conversation with "${chat.name}"?`);
-  if (!confirmDelete) return;
+function arquivarChat() {
+  delete chats[chatAtual];
+  salvar();
+  document.getElementById('chatWindow').classList.add('hidden');
+  document.getElementById('noChat').classList.remove('hidden');
+}
 
-  conversations = conversations.filter(c => c.id !== id);
-
-  if (currentChatId === id) {
-    chatWindow.classList.add("hidden");
-    chatCards.classList.remove("hidden");
-    currentChatId = null;
+function salvar() {
+  localStorage.setItem('chats', JSON.stringify(chats));
+}
+function sair(){
+    if(confirm("Tem a certeza que deseja sair?")){
+      window.location.href="home.html";
+    }
   }
-
-  save();
-  renderConversations();
-}
-
-/* OPEN CHAT */
-function openChat(id) {
-  currentChatId = id;
-  const chat = conversations.find(c => c.id === id);
-
-  chatHeader.textContent = chat.name;
-
-  chatCards.classList.add("hidden");
-  chatWindow.classList.remove("hidden");
-
-  renderMessages();
-}
-
-/* RENDER MESSAGES */
-function renderMessages() {
-  chatMessages.innerHTML = "";
-  const chat = conversations.find(c => c.id === currentChatId);
-
-  chat.messages.forEach(msg => {
-    const div = document.createElement("div");
-    div.className = "message";
-    div.textContent = msg.text;
-    chatMessages.appendChild(div);
-  });
-
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-/* CREATE CHAT */
-document.getElementById("createConversationBtn").onclick = () => {
-  const input = document.getElementById("newConversation");
-  const name = input.value.trim();
-  if (!name) return;
-
-  conversations.push({
-    id: Date.now(),
-    userId: null,
-    name,
-    messages: []
-  });
-
-  input.value = "";
-  save();
-  renderConversations();
-};
-
-/* SEND MESSAGE */
-sendMessageBtn.onclick = () => {
-  const text = messageInput.value.trim();
-  if (!text || currentChatId === null) return;
-
-  const chat = conversations.find(c => c.id === currentChatId);
-  chat.messages.push({ text });
-
-  messageInput.value = "";
-  save();
-  renderMessages();
-  renderConversations();
-};
-
-/* INIT */
-renderConversations();
-window.openChat = openChat; // para listUsers.js

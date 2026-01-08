@@ -60,6 +60,10 @@ translateBtn.addEventListener("click", async () => {
 });
 
 
-
+function sair(){
+    if(confirm("Tem a certeza que deseja sair?")){
+      window.location.href="home.html";
+    }
+  }
 // Inicializa
 renderWords();

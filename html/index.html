@@ -15,8 +15,48 @@
 
 <div class="app">
 
-    <!-- SIDEBAR  -->
-    <div id="sidebar-container"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">U</div>
+
+        <nav class="menu">
+            <a class="active">
+                <i class='bx bx-home'></i>
+                <span>Home</span>
+            </a>
+
+            <a href="explorar.html">
+                <i class='bx bx-search-alt'></i>
+                <span>Explore</span>
+               
+            </a>
+
+            <a href="chat.html">
+                <i class='bx bx-chat'></i>
+                <span>Chat</span>
+            </a>
+
+            <a href="perfil.html">
+                <i class='bx bx-user'></i>
+                <span>Profile</span>
+            </a>
+
+            <a class="active" href="dicionario.html">
+              <i class='bx bx-book'></i>
+              <span>Dictionary</span>
+          </a>
+          <a class="active" onclick="sair()">
+            <i class='bx bx-log-out'></i>
+            <span>Exit</span>
+        </a>
+        </nav>
+
+        <div class="user">
+            <div class="avatar">P</div>
+        </div>
+    </aside>
+
 
     <!-- MAIN -->
     <main class="content">
@@ -52,7 +92,60 @@
                 <p>Let others know you are ready to talk.</p>
                 <button>I'm available</button>
             </div>
+                    
         </section>
+        <section class="learning">
+
+            <!-- WORD OF THE DAY -->
+            <div class="learn-card">
+              <h3>
+                <i class='bx bx-book-open'></i>
+                Word of the Day
+              </h3>
+          
+              <div class="word">
+                <strong>Improve</strong>
+                <span>/ɪmˈpruːv/</span>
+              </div>
+          
+              <p>To make something better.</p>
+          
+              <small>Example: I want to improve my English.</small>
+            </div>
+          
+            <!-- VOCABULARY -->
+            <div class="learn-card">
+              <h3>
+                <i class='bx bx-layer'></i>
+                Daily Vocabulary
+              </h3>
+          
+              <ul class="vocab-list">
+                <li><strong>Beginner</strong> – Iniciante</li>
+                <li><strong>Fluent</strong> – Fluente</li>
+                <li><strong>Practice</strong> – Praticar</li>
+              </ul>
+            </div>
+          
+            <!-- QUICK QUIZ -->
+            <div class="learn-card quiz">
+              <h3>
+                <i class='bx bx-check-circle'></i>
+                Quick Quiz
+              </h3>
+          
+              <p>What does <strong>"Improve"</strong> mean?</p>
+          
+              <button>A) To stop</button>
+              <button>B) To make better</button>
+              <button>C) To forget</button>
+            </div>
+          
+          </section>
+    </main>
+
+</div>
+<script src="../javascript/inde.js"></script>
         
     </main>
 

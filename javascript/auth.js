@@ -116,3 +116,8 @@ function switchView(id) {
   document.querySelectorAll(".card > div").forEach(v => v.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
 }
+function sair(){
+  if(confirm("Tem a certeza que deseja sair?")){
+    window.location.href="home.html";
+  }
+}
