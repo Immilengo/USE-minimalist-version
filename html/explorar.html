@@ -78,7 +78,7 @@
             </div>
         </header>
 
-        <div class="user-card" style="display: none;">
+        <div class="user-card" style="display: none;" data-user-id="123">
             <div class="user-card-header">
                 <div class="user-avatar">
                     <img src="/static/img/gato.jfif" alt="Elisabeth">
@@ -107,10 +107,9 @@
                 <span><i class="fas fa-star"></i> 4.6</span>
             </div>
 
-            <button class="btn-call" onclick="initiateCall()">
-                <i class="fas fa-phone"></i>
-                Start Call
-            </button>
+            <button class="btn-call">
+                <i class="fas fa-phone"></i><a href="call.html">Start Call</a>
+              </button>
         </div>
 
         <div id="usersList" class="users-list"></div>
@@ -120,26 +119,6 @@
 </div>
 
 <script src="../javascript/listUsers.js"></script>
-<div id="callScreen" class="call-screen hidden">
-  <div class="call-content">
-    <img id="callAvatar" class="call-avatar" />
-    <h2 id="callName"></h2>
-    <p id="callStatus">Calling...</p>
 
-    <div class="call-timer" id="callTimer">00:00</div>
-
-    <div class="call-actions">
-      <button class="call-btn mute">🎤</button>
-      <button class="call-btn end" onclick="endCall()">❌</button>
-      <button class="call-btn speaker">🔊</button>
-    </div>
-  </div>
-</div>
-
-    <script src="/javascript/session.js"></script>
-    <script type="module">
-        import { loadSidebar } from "/components/sidebar/sidebar.js";
-        loadSidebar("explorar");
-    </script>
 </body>
 </html>

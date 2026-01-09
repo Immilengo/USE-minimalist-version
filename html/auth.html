@@ -16,10 +16,11 @@
     <div id="loginView">
       <h2>Welcome Back</h2>
         <i class="bx bx-envelope"></i>
-        <input id="loginEmail" placeholder="Email" />
-
+        <input id="loginEmail" placeholder="Email" required />
+        <span id="error-login-email" class="erro"></span><br><br>
         <i class="bx bx-lock-alt"></i>
-        <input id="loginPassword" type="password" placeholder="Password" />
+        <input id="loginPassword" type="password" placeholder="Password"  required/>
+        <span id="error-login-password" class="erro"></span><br><br>
       <button onclick="login()">Login</button>
       <p class="link" onclick="sair()">Cancelar</p>
       <p class="link" onclick="showRegister()" style="text-decoration: underline;">Create account</p>
@@ -30,8 +31,11 @@
     <div id="registerView" class="hidden">
       <h2>Create Account</h2>
       <input id="regName" placeholder="Name" />
+      <span id="error-name" class="erro"></span><br><br>
       <input id="regEmail" placeholder="Email" />
+      <span id="error-email" class="erro"></span><br><br>
       <input id="regPassword" type="password" placeholder="Password" />
+      <span id="error-password" class="erro"></span><br><br>
       <button onclick="nextStep('level')">Continue</button>
       <p class="link" onclick="showLogin()">Back to login</p>
     </div>
@@ -39,13 +43,12 @@
     <!-- LEVEL -->
     <div id="levelView" class="hidden">
       <h2>Select your level</h2>
+      <div class="option" onclick="selectLevel('beginner', this)">Beginner</div>
+      <div class="option" onclick="selectLevel('intermediate',this)">Intermediate</div>
+      <div class="option" onclick="selectLevel('advantage',this)">Advantage</div>
+      <div class="option" onclick="selectLevel('native',this)">Native</div>
 
-      <div class="option" onclick="selectLevel('beginner')">Beginner</div>
-      <div class="option" onclick="selectLevel('intermediate')">Intermediate</div>
-      <div class="option" onclick="selectLevel('advantage')">Advantage</div>
-      <div class="option" onclick="selectLevel('native')">Native</div>
-
-      <button onclick="nextStep('interests')">Continue</button>
+      <button type="button" onclick="nextStep('interests')">Continue</button>
       <p class="link" onclick="showRegister()">Back to Create Account</p>
     </div>
 
