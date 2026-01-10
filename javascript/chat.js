@@ -1,13 +1,37 @@
 let chatAtual = null;
 let chats = JSON.parse(localStorage.getItem('chats')) || {};
+const urlParams = new URLSearchParams(window.location.search);
+const userParam = urlParams.get('user');
 
-function abrirChat(usuario) {
-  chatAtual = usuario;
-  document.getElementById('chatUser').innerText = usuario;
-  document.getElementById('chatWindow').classList.remove('hidden');
-  document.getElementById('noChat').classList.add('hidden');
+if (userParam) {
+  // Se tiver um usuário na URL, abrir o chat com ele
+  abrirChat(userParam);
+}
+function abrirChat(email) {
+  // Buscar o usuário no IndexedDB
+  const openRequest = indexedDB.open("use_app");
+  
+  openRequest.onsuccess = function(event) {
+    const db = event.target.result;
+    const tx = db.transaction("users", "readonly");
+    const store = tx.objectStore("users");
+    const request = store.get(email);
 
-  renderMensagens();
+    request.onsuccess = function() {
+      const user = request.result;
+      if (user) {
+        chatAtual = email; // usamos o email como identificador
+        // Exibir o nome do usuário no chat
+        document.getElementById('chatUser').innerText = user.name;
+        document.getElementById('chatWindow').classList.remove('hidden');
+        document.getElementById('noChat').classList.add('hidden');
+
+        renderMensagens();
+      } else {
+        alert('User not found');
+      }
+    };
+  };
 }
 
 function enviarMensagem() {
@@ -28,23 +52,44 @@ function enviarMensagem() {
   renderMensagens();
 }
 
-function renderMensagens() {
-  const container = document.getElementById('messages');
+function carregarConversas() {
+  const container = document.querySelector('.users-list');
+  // Limpar a lista atual, exceto o título
+  const titulo = container.querySelector('h3');
   container.innerHTML = '';
+  container.appendChild(titulo);
 
-  (chats[chatAtual] || []).forEach(msg => {
-    const div = document.createElement('div');
-    div.className = `message ${msg.autor}`;
-    div.innerHTML = `
-      ${msg.texto}
-      <div class="actions">
-        <i class='bx bx-trash' onclick="apagarMensagem(${msg.id})"></i>
-      </div>
-    `;
-    container.appendChild(div);
-  });
+  // Obter todos os emails que têm mensagens
+  const emails = Object.keys(chats);
 
-  container.scrollTop = container.scrollHeight;
+  // Para cada email, buscar o usuário no IndexedDB para obter o nome
+  const openRequest = indexedDB.open("use_app");
+  
+  openRequest.onsuccess = function(event) {
+    const db = event.target.result;
+    const tx = db.transaction("users", "readonly");
+    const store = tx.objectStore("users");
+
+    emails.forEach(email => {
+      const request = store.get(email);
+      request.onsuccess = function() {
+        const user = request.result;
+        if (user) {
+          const div = document.createElement('div');
+          div.className = 'user-item';
+          div.onclick = () => abrirChat(email);
+          div.innerHTML = `
+            <div class="user-avatar">${user.name.charAt(0)}</div>
+            <div class="user-info">
+              <strong>${user.name}</strong><br>
+              <small>${user.online ? 'Online' : 'Offline'}</small>
+            </div>
+          `;
+          container.appendChild(div);
+        }
+      };
+    });
+  };
 }
 
 function apagarMensagem(id) {

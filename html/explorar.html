@@ -113,11 +113,18 @@
         </div>
 
         <div id="usersList" class="users-list"></div>
-     
+
     </main>
 
 </div>
-
+<div id="callTypeModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Choose call type</h3>
+      <button onclick="startCall('video')">Video Call</button>
+      <button onclick="startCall('voice')">Voice Call</button>
+      <button onclick="closeModal()" style="background: red;color: white;">Cancel</button>
+    </div>
+  </div>
 <script src="../javascript/listUsers.js"></script>
 
 </body>

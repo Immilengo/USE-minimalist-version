@@ -40,50 +40,9 @@ function getUserByEmail(email) {
   return window.usersCache.find(u => u.email === email);
 }
 
-// ================================
-// CALL SCREEN LOGIC
-// ================================
+//Call Screen
 let callInterval;
 let seconds = 0;
-
-function initiateCall(email) {
-  const user = getUserByEmail(email);
-  if (!user) return;
-
-  document.getElementById("callAvatar").src =
-    user.avatar || "/static/img/default-avatar.png";
-
-  document.getElementById("callName").innerText = user.name;
-  document.getElementById("callStatus").innerText = "Calling...";
-  document.getElementById("callTimer").innerText = "00:00";
-
-  document.getElementById("callScreen").classList.remove("hidden");
-
-  // Simula conexão
-  setTimeout(() => {
-    document.getElementById("callStatus").innerText = "Connected";
-    startTimer();
-  }, 2000);
-}
-
-function startTimer() {
-  seconds = 0;
-  callInterval = setInterval(() => {
-    seconds++;
-    const min = String(Math.floor(seconds / 60)).padStart(2, "0");
-    const sec = String(seconds % 60).padStart(2, "0");
-    document.getElementById("callTimer").innerText = `${min}:${sec}`;
-  }, 1000);
-}
-
-function endCall() {
-  clearInterval(callInterval);
-  document.getElementById("callScreen").classList.add("hidden");
-}
-
-// ================================
-// USER CARD
-// ================================
 function createUserCard(user) {
   return `
     <div class="user-card">
@@ -122,7 +81,43 @@ function createUserCard(user) {
 }
 
 
-///////////////////////////////////////////////
+
+
+
+let selectedUserEmail = null;
+
+function initiateCall(email) {
+  selectedUserEmail = email;
+  document.getElementById('callTypeModal').classList.remove('hidden');
+}
+
+function startCall(type) {
+  if (!selectedUserEmail) return;
+  // Redireciona para a página de chamada com o email e o tipo
+  window.location.href = `call.html?user=${selectedUserEmail}&type=${type}`;
+}
+
+function closeModal() {
+  document.getElementById('callTypeModal').classList.add('hidden');
+}
+
+function startTimer() {
+  seconds = 0;
+  callInterval = setInterval(() => {
+    seconds++;
+    const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const sec = String(seconds % 60).padStart(2, "0");
+    document.getElementById("callTimer").innerText = `${min}:${sec}`;
+  }, 1000);
+}
+
+function endCall() {
+  clearInterval(callInterval);
+  document.getElementById("callScreen").classList.add("hidden");
+}
+
+
+
 // ================================
 // SEARCH & FILTER LOGIC
 // ================================
@@ -221,5 +216,6 @@ function hasSimilarInterests(user) {
     loggedUser.interests.includes(i)
   );
 }
+
 
 tempUser.online = true;

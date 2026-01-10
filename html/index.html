@@ -48,12 +48,12 @@
           </a>
           <a class="active" onclick="sair()">
             <i class='bx bx-log-out'></i>
-            <span>Exit</span>
+            <span>Logout</span>
         </a>
         </nav>
 
         <div class="user">
-            <div class="avatar">P</div>
+            <div class="avatar" id="avatar">P</div>
         </div>
     </aside>
 
@@ -89,8 +89,8 @@
                     <i class='bx bx-bolt-circle'></i>
                     Be Available
                 </h3>
-                <p>Let others know you are ready to talk.</p>
-                <button>I'm available</button>
+                <p id="see">Let others know you are ready to talk.</p>
+                <button id="available" onclick="status()">I'm available</button>
             </div>
                     
         </section>
