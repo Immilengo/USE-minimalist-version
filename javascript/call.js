@@ -216,13 +216,26 @@ if (loggedUserEmail) {
         if (subtitlesOn) addSubtitle();
     });
 
+   
+
     document.getElementById('goToChatBtn').addEventListener('click', () => {
+
+        const MIN_SECONDS = 120; // 2 minutos
+    /*
+        if (seconds < MIN_SECONDS) {
+            alert('You need to talk at least 2 minutes before opening the chat.');
+            return;
+        }*/
         window.location.href = `chat.html?user=${userEmail}`;
     });
+    
 
     document.getElementById('backToHubBtn').addEventListener('click', () => {
         window.location.href = 'explorar.html';
     });
+
+    
+  
 
     /* =======================
        START SIMULATION
@@ -230,3 +243,7 @@ if (loggedUserEmail) {
     setTimeout(startTimer, 1000);
 
 });
+
+function reCall(){
+    location.reload();
+}

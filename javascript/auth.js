@@ -27,6 +27,12 @@ function sair() {
 }
 
 
+function isValidName(name) {
+  // Apenas letras, acentos e espaços
+  return /^[A-Za-zÀ-ÿ\s]+$/.test(name);
+}
+
+
 function nextStep(step) {
 
   if (step === "level") {
@@ -39,11 +45,23 @@ function nextStep(step) {
     document.getElementById("error-email").innerText = "";
     document.getElementById("error-password").innerText = "";
 
-    if (!regName.value || !regEmail.value || !regPassword.value) {
-      alert("You must fill all labels");
+    if (regName.value.length < 3) {
+      document.getElementById("error-name").innerText =
+        "Name must be at least 3 characters";
       return;
     }
-
+    
+    if (!isValidName(regName.value)) {
+      document.getElementById("error-name").innerText =
+        "Name must contain only letters (no numbers or special characters)";
+      return;
+    }
+    
+   
+    document.getElementById("regName").addEventListener("input", function () {
+      this.value = this.value.replace(/[0-9]/g, '');
+    });
+    
     if (!regEmail.value.includes("@") || !regEmail.value.includes(".")) {
       document.getElementById("error-email").innerText = "You must enter a valid email";
       return;

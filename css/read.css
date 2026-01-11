@@ -1,0 +1,107 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  
+  body {
+    background: #f4f6f8;
+    color: #1f2937;
+  }
+  
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  
+  /* CONTAINER */
+  .container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  /* CARD */
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .card ul {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .card ul li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  
+  /* ICON */
+  .icon {
+    font-size: 2rem;
+    color: #667eea;
+    margin-bottom: 10px;
+  }
+  
+  /* HIGHLIGHT */
+  .highlight {
+    background: #eef2ff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* STRONG */
+  .card.strong {
+    border-left: 5px solid #667eea;
+  }
+  
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  
+  /* DESKTOP */
+  @media (min-width: 768px) {
+    .header h1 {
+      font-size: 2.2rem;
+    }
+  
+    .card h2 {
+      font-size: 1.4rem;
+    }
+  }
+  
