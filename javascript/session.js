@@ -58,3 +58,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fazer logout globalmente disponível
     window.sair = logout;
 });
+
