@@ -5,7 +5,6 @@
     <title>USE | United States of English</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
-     <!-- CSS Base e Sidebar -->
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/components/sidebar/sidebar.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -13,7 +12,6 @@
 <body>
 
 <div class="app">
-
     <!-- SIDEBAR FIXA -->
     <aside class="sidebar">
         <div class="logo">U</div>
@@ -51,7 +49,7 @@
         </nav>
 
         <div class="user">
-            <div class="avatar" id="avatar">P</div>
+            <div class="avatar" id="avatar"></div>
         </div>
     </aside>
 
@@ -69,7 +67,7 @@
                     Start Speaking
                 </h3>
                 <p>Find people available to talk right now.</p>
-                <button>Explore people</button>
+                <button onclick="window.location.href='explorar.html'">Explore people</button>
             </div>
 
             <div class="card">
@@ -78,7 +76,7 @@
                     Meet the World
                 </h3>
                 <p>Connect with native and fluent speakers.</p>
-                <button>Go to Explore</button>
+                <button onclick="window.location.href='explorar.html'">Go to Explore</button>
             </div>
 
             <div class="card">
@@ -87,7 +85,7 @@
                     Be Available
                 </h3>
                 <p id="see">Let others know you are ready to talk.</p>
-                <button id="available" onclick="status()">I'm available</button>
+                <button id="available" onclick="toggleAvailability()">I'm available</button>
             </div>
         </section>
         
@@ -132,17 +130,59 @@
 
                 <p>What does <strong>"Improve"</strong> mean?</p>
 
-                <button>A) To stop</button>
-                <button>B) To make better</button>
-                <button>C) To forget</button>
+                <button onclick="checkAnswer('A')">A) To stop</button>
+                <button onclick="checkAnswer('B')" class="correct">B) To make better</button>
+                <button onclick="checkAnswer('C')">C) To forget</button>
             </div>
         </section>
     </main>
 
 </div>
 
-<script src="../javascript/inde.js"></script>
 <script src="/javascript/session.js"></script>
+<script src="../javascript/inde.js"></script>
+<script>
+// Função para toggle de disponibilidade
+function toggleAvailability() {
+    const user = JSON.parse(localStorage.getItem("loggedUser"));
+    if (!user) return;
+    
+    user.online = !user.online;
+    localStorage.setItem("loggedUser", JSON.stringify(user));
+    
+    const btn = document.getElementById("available");
+    if (user.online) {
+        btn.textContent = "I'm available";
+        btn.style.background = "#2563eb";
+        alert("You are now available for calls!");
+    } else {
+        btn.textContent = "Make available";
+        btn.style.background = "#6b7280";
+        alert("You are no longer available for calls.");
+    }
+}
+
+// Função para verificar resposta do quiz
+function checkAnswer(answer) {
+    const buttons = document.querySelectorAll('.quiz button');
+    buttons.forEach(btn => {
+        btn.style.background = '#f1f5f9';
+        btn.style.color = '#1f2937';
+    });
+    
+    if (answer === 'B') {
+        const correctBtn = document.querySelector('.quiz button.correct');
+        correctBtn.style.background = '#10b981';
+        correctBtn.style.color = 'white';
+        alert("Correct! 'Improve' means to make something better.");
+    } else {
+        const selectedBtn = document.querySelector(`.quiz button:nth-child(${answer === 'A' ? 1 : 3})`);
+        selectedBtn.style.background = '#ef4444';
+        selectedBtn.style.color = 'white';
+        alert("Wrong answer. Try again!");
+    }
+}
+</script>
 
 </body>
 </html>

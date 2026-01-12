@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>USE | Explore</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/explorar.css">
     <link rel="stylesheet" href="/css/user_load.css">
-
-     <!-- CSS Base e Sidebar -->
-    <link rel="stylesheet" href="/css/base.css">
-     <!-- CSS Base e Sidebar -->
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/components/sidebar/sidebar.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -18,7 +13,7 @@
 <body>
 
 <div class="app">
-   <!-- SIDEBAR FIXA -->
+    <!-- SIDEBAR FIXA -->
     <aside class="sidebar">
         <div class="logo">U</div>
 
@@ -55,14 +50,12 @@
         </nav>
 
         <div class="user">
-            <div class="avatar">P</div>
+            <div class="avatar" id="sidebarAvatar"></div>
         </div>
     </aside>
 
-
     <!-- CONTENT -->
     <main class="content explore">
-
         <header class="explore-header">
             <h1>Explore</h1>
 
@@ -72,7 +65,7 @@
                 <input id="searchInput" type="text" placeholder="Search by name or country">
             </div>
 
-                        <!-- FILTERS -->
+            <!-- FILTERS -->
             <div class="filters">
                 <button class="filter active" data-filter="all">All</button>
                 <button class="filter" data-filter="native">Native</button>
@@ -84,15 +77,16 @@
             </div>
         </header>
 
+        <!-- Template de card de usuário (oculto) -->
         <div class="user-card" style="display: none;" data-user-id="123">
             <div class="user-card-header">
                 <div class="user-avatar">
-                    <img src="/static/img/gato.jfif" alt="Elisabeth">
+                    <img src="/static/img/default-avatar.png" alt="User">
                     <span class="online-indicator"></span>
                 </div>
 
                 <div class="user-info">
-                    <div class="user-name">Elisabeth Milengo</div>
+                    <div class="user-name">User Name</div>
                     <div class="user-meta">
                         <span class="flag">🇦🇴</span>
                         <span class="user-level">
@@ -103,35 +97,53 @@
             </div>
 
             <div class="user-interests">
-                <span class="interest-tag">Sports</span>
-                <span class="interest-tag">Technology</span>
-                <span class="interest-tag">Programming</span>
+                <span class="interest-tag">Interest 1</span>
+                <span class="interest-tag">Interest 2</span>
+                <span class="interest-tag">Interest 3</span>
             </div>
 
             <div class="user-stats">
-                <span><i class="fas fa-clock"></i> 45 min avg</span>
-                <span><i class="fas fa-star"></i> 4.6</span>
+                <span><i class="fas fa-clock"></i> 30 min avg</span>
+                <span><i class="fas fa-star"></i> 4.5</span>
             </div>
 
-            <button class="btn-call">
-                <i class="fas fa-phone"></i><a href="call.html">Start Call</a>
-              </button>
+            <button class="btn-call" onclick="initiateCall('user@example.com')">
+                <i class="fas fa-phone"></i>
+                Start Call
+            </button>
         </div>
 
         <div id="usersList" class="users-list"></div>
-
     </main>
 
 </div>
+
 <div id="callTypeModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Choose call type</h3>
-      <button onclick="startCall('video')">Video Call</button>
-      <button onclick="startCall('voice')">Voice Call</button>
-      <button onclick="closeModal()" style="background: red;color: white;">Cancel</button>
+        <h3>Choose call type</h3>
+        <button onclick="startCall('video')">Video Call</button>
+        <button onclick="startCall('voice')">Voice Call</button>
+        <button onclick="closeModal()" style="background: red;color: white;">Cancel</button>
     </div>
-  </div>
+</div>
+
+<!-- Adicione Font Awesome para os ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script src="/javascript/session.js"></script>
 <script src="../javascript/listUsers.js"></script>
+<script>
+// Atualizar avatar quando página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem("loggedUser"));
+    if (user && user.name) {
+        const avatar = document.querySelector('.avatar');
+        if (avatar) {
+            avatar.textContent = user.name.charAt(0).toUpperCase();
+        }
+    }
+});
+</script>
 
 </body>
 </html>

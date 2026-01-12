@@ -1,122 +1,127 @@
+// /javascript/listUsers.js
+
 // ================================
 // INDEXED DB
 // ================================
 const open = indexedDB.open("use_app");
 
 open.onsuccess = () => {
-  const db = open.result;
-  window.appDB = db;
-  loadUsers(db);
+    const db = open.result;
+    window.appDB = db;
+    loadUsers(db);
 };
 
 // ================================
 // LOAD USERS
 // ================================
 function loadUsers(db) {
-  const tx = db.transaction("users", "readonly");
-  const store = tx.objectStore("users");
+    const tx = db.transaction("users", "readonly");
+    const store = tx.objectStore("users");
 
-  store.getAll().onsuccess = e => {
-    const users = e.target.result;
-    window.usersCache = users; // cache global
-    const container = document.getElementById("usersList");
+    store.getAll().onsuccess = e => {
+        const allUsers = e.target.result;
+        window.usersCache = allUsers; // cache global
+        
+        // Obter usuário logado
+        const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+        
+        // Filtrar usuário logado da lista
+        const filteredUsers = allUsers.filter(user => 
+            !loggedUser || user.email !== loggedUser.email
+        );
+        
+        const container = document.getElementById("usersList");
+        container.innerHTML = "";
 
-    container.innerHTML = "";
-
-    users.forEach(user => {
-      container.innerHTML += createUserCard(user);
-    });
-  };
+        filteredUsers.forEach(user => {
+            container.innerHTML += createUserCard(user);
+        });
+    };
 }
 
 // ================================
 // HELPERS
 // ================================
 function capitalize(text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+    return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 function getUserByEmail(email) {
-  return window.usersCache.find(u => u.email === email);
+    return window.usersCache.find(u => u.email === email);
 }
 
-//Call Screen
+// Call Screen
 let callInterval;
 let seconds = 0;
+
 function createUserCard(user) {
-  return `
+    return `
     <div class="user-card">
-      <div class="user-card-header">
-        <div class="user-avatar">
-          <img src="${user.avatar || '/static/img/default-avatar.png'}" alt="${user.name}">
-          <span class="online-indicator"></span>
+        <div class="user-card-header">
+            <div class="user-avatar">
+                <img src="${user.avatar || '/static/img/default-avatar.png'}" alt="${user.name}">
+                <span class="online-indicator"></span>
+            </div>
+
+            <div class="user-info">
+                <div class="user-name">${user.name}</div>
+                <div class="user-meta">
+                    <span class="flag">🇦🇴</span>
+                    <span class="user-level">${capitalize(user.level)}</span>
+                </div>
+            </div>
         </div>
 
-        <div class="user-info">
-          <div class="user-name">${user.name}</div>
-          <div class="user-meta">
-            <span class="flag">🇦🇴</span>
-            <span class="user-level">${capitalize(user.level)}</span>
-          </div>
+        <div class="user-interests">
+            ${user.interests.map(i => `
+            <span class="interest-tag">${i}</span>
+            `).join("")}
         </div>
-      </div>
 
-      <div class="user-interests">
-        ${user.interests.map(i => `
-          <span class="interest-tag">${i}</span>
-        `).join("")}
-      </div>
+        <div class="user-stats">
+            <span><i class="fas fa-clock"></i> ${user.avgMinutes || 30} min avg</span>
+            <span><i class="fas fa-star"></i> ${user.rating || "4.5"}</span>
+        </div>
 
-      <div class="user-stats">
-        <span><i class="fas fa-clock"></i> ${user.avgMinutes || 30} min avg</span>
-        <span><i class="fas fa-star"></i> ${user.rating || "4.5"}</span>
-      </div>
-
-      <button class="btn-call" onclick="initiateCall('${user.email}')">
-        <i class="fas fa-phone"></i>
-        Start Call
-      </button>
+        <button class="btn-call" onclick="initiateCall('${user.email}')">
+            <i class="fas fa-phone"></i>
+            Start Call
+        </button>
     </div>
-  `;
+    `;
 }
-
-
-
-
 
 let selectedUserEmail = null;
 
 function initiateCall(email) {
-  selectedUserEmail = email;
-  document.getElementById('callTypeModal').classList.remove('hidden');
+    selectedUserEmail = email;
+    document.getElementById('callTypeModal').classList.remove('hidden');
 }
 
 function startCall(type) {
-  if (!selectedUserEmail) return;
-  // Redireciona para a página de chamada com o email e o tipo
-  window.location.href = `call.html?user=${selectedUserEmail}&type=${type}`;
+    if (!selectedUserEmail) return;
+    // Redireciona para a página de chamada com o email e o tipo
+    window.location.href = `call.html?user=${selectedUserEmail}&type=${type}`;
 }
 
 function closeModal() {
-  document.getElementById('callTypeModal').classList.add('hidden');
+    document.getElementById('callTypeModal').classList.add('hidden');
 }
 
 function startTimer() {
-  seconds = 0;
-  callInterval = setInterval(() => {
-    seconds++;
-    const min = String(Math.floor(seconds / 60)).padStart(2, "0");
-    const sec = String(seconds % 60).padStart(2, "0");
-    document.getElementById("callTimer").innerText = `${min}:${sec}`;
-  }, 1000);
+    seconds = 0;
+    callInterval = setInterval(() => {
+        seconds++;
+        const min = String(Math.floor(seconds / 60)).padStart(2, "0");
+        const sec = String(seconds % 60).padStart(2, "0");
+        document.getElementById("callTimer").innerText = `${min}:${sec}`;
+    }, 1000);
 }
 
 function endCall() {
-  clearInterval(callInterval);
-  document.getElementById("callScreen").classList.add("hidden");
+    clearInterval(callInterval);
+    document.getElementById("callScreen").classList.add("hidden");
 }
-
-
 
 // ================================
 // SEARCH & FILTER LOGIC
@@ -126,96 +131,106 @@ const searchInput = document.getElementById("searchInput");
 const filterButtons = document.querySelectorAll(".filter");
 
 // --- SEARCH ---
-searchInput.addEventListener("input", applyFilters);
+if (searchInput) {
+    searchInput.addEventListener("input", applyFilters);
+}
 
 // --- FILTER BUTTONS ---
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    activeFilter = btn.dataset.filter;
-    applyFilters();
-  });
-});
+if (filterButtons.length > 0) {
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filterButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeFilter = btn.dataset.filter;
+            applyFilters();
+        });
+    });
+}
 
 // ================================
 // APPLY FILTERS
 // ================================
 function applyFilters() {
-  if (!window.usersCache) return;
+    if (!window.usersCache) return;
 
-  const query = searchInput.value.toLowerCase().trim();
+    const query = searchInput.value.toLowerCase().trim();
+    
+    // Obter usuário logado
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
 
-  const filteredUsers = window.usersCache.filter(user => {
-    // ---------- SEARCH ----------
-    const matchesSearch =
-      user.name?.toLowerCase().includes(query) ||
-      user.country?.toLowerCase().includes(query) ||
-      user.interests?.some(i => i.toLowerCase().includes(query));
+    const filteredUsers = window.usersCache.filter(user => {
+        // Filtrar usuário logado
+        if (loggedUser && user.email === loggedUser.email) {
+            return false;
+        }
 
-    // ---------- FILTERS ----------
-    let matchesFilter = true;
+        // ---------- SEARCH ----------
+        const matchesSearch =
+            user.name?.toLowerCase().includes(query) ||
+            user.country?.toLowerCase().includes(query) ||
+            user.interests?.some(i => i.toLowerCase().includes(query));
 
-    switch (activeFilter) {
-      case "native":
-      case "beginner":
-      case "intermediate":
-      case "advanced":
-        matchesFilter = user.level === activeFilter;
-        break;
+        // ---------- FILTERS ----------
+        let matchesFilter = true;
 
-      case "available":
-        matchesFilter = user.online === true;
-        break;
+        switch (activeFilter) {
+            case "native":
+            case "beginner":
+            case "intermediate":
+            case "advanced":
+                matchesFilter = user.level === activeFilter;
+                break;
 
-      case "similar":
-        matchesFilter = hasSimilarInterests(user);
-        break;
+            case "available":
+                matchesFilter = user.online === true;
+                break;
 
-      case "all":
-      default:
-        matchesFilter = true;
-    }
+            case "similar":
+                matchesFilter = hasSimilarInterests(user);
+                break;
 
-    return matchesSearch && matchesFilter;
-  });
+            case "all":
+            default:
+                matchesFilter = true;
+        }
 
-  renderUsers(filteredUsers);
+        return matchesSearch && matchesFilter;
+    });
+
+    renderUsers(filteredUsers);
 }
 
 // ================================
 // RENDER USERS
 // ================================
 function renderUsers(users) {
-  const container = document.getElementById("usersList");
-  container.innerHTML = "";
+    const container = document.getElementById("usersList");
+    if (!container) return;
+    
+    container.innerHTML = "";
 
-  if (users.length === 0) {
-    container.innerHTML = `
-      <p style="opacity:.6; text-align:center; padding:2rem">
-        No users found
-      </p>`;
-    return;
-  }
+    if (users.length === 0) {
+        container.innerHTML = `
+        <p style="opacity:.6; text-align:center; padding:2rem">
+            No users found
+        </p>`;
+        return;
+    }
 
-  users.forEach(user => {
-    container.innerHTML += createUserCard(user);
-  });
+    users.forEach(user => {
+        container.innerHTML += createUserCard(user);
+    });
 }
 
 // ================================
 // SIMILAR INTERESTS (LOGGED USER)
 // ================================
 function hasSimilarInterests(user) {
-  const loggedUser =
-    JSON.parse(localStorage.getItem("loggedUser")) || null;
+    const loggedUser = JSON.parse(localStorage.getItem("loggedUser")) || null;
 
-  if (!loggedUser || !loggedUser.interests) return false;
+    if (!loggedUser || !loggedUser.interests) return false;
 
-  return user.interests?.some(i =>
-    loggedUser.interests.includes(i)
-  );
+    return user.interests?.some(i =>
+        loggedUser.interests.includes(i)
+    );
 }
-
-
-tempUser.online = true;
