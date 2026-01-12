@@ -1,89 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dictionary</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/dicionario.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USE | Dictionary</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+     <!-- CSS Base e Sidebar -->
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/components/sidebar/sidebar.css">
+    <link rel="stylesheet" href="../css/dicionario.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
 </head>
 <body>
 <div class="app">
 
-  <!-- SIDEBAR / MENU -->
-  <aside class="sidebar">
-      <div class="logo">U</div>
+    <!-- SIDEBAR FIXA -->
+    <aside class="sidebar">
+        <div class="logo">U</div>
 
-      <nav class="menu">
-          <a href="index.html">
-              <i class='bx bx-home'></i>
-              <span>Home</span>
-          </a>
+        <nav class="menu">
+            <a href="index.html">
+                <i class='bx bx-home'></i>
+                <span>Home</span>
+            </a>
 
-          <a href="explorar.html">
-              <i class='bx bx-search-alt'></i>
-              <span>Explore</span>
-          </a>
+            <a href="explorar.html">
+                <i class='bx bx-search-alt'></i>
+                <span>Explore</span>
+            </a>
 
-          <a href="chat.html">
-              <i class='bx bx-chat'></i>
-              <span>Chat</span>
-          </a>
-          <a href="perfil.html">
-            <i class='bx bx-user'></i>
-            <span>Profile</span>
-        </a>
+            <a href="chat.html">
+                <i class='bx bx-chat'></i>
+                <span>Chat</span>
+            </a>
 
-          <a class="active" href="dictionary.html">
-              <i class='bx bx-book'></i>
-              <span>Dictionary</span>
-          </a>
-          <a class="active" onclick="sair()">
-            <i class='bx bx-log-out'></i>
-            <span>Exit</span>
-        </a>
-      </nav>
+            <a href="perfil.html">
+                <i class='bx bx-user'></i>
+                <span>Profile</span>
+            </a>
 
-      <div class="user">
-          <div class="avatar" id="sidebarAvatar">P</div>
-      </div>
-  </aside>
+            <a class="active" href="dicionario.html">
+                <i class='bx bx-book'></i>
+                <span>Dictionary</span>
+            </a>
+            
+            <a class="logout-btn" onclick="sair()">
+                <i class='bx bx-log-out'></i>
+                <span>Logout</span>
+            </a>
+        </nav>
 
-
-  <!-- MAIN CONTENT -->
-  <main class="content">
-    <section class="dictionary-section">
-      <h2>Dictionary</h2>
-
-      <div class="dictionary-card">
-        <!-- ADICIONAR PALAVRA -->
-        <div class="form-group">
-          <label for="wordInput">Enter a word (English)</label>
-          <input type="text" id="wordInput" placeholder="e.g., Hello" />
+        <div class="user">
+            <div class="avatar" id="sidebarAvatar">P</div>
         </div>
+    </aside>
 
-        <div class="form-group">
-          <label for="translationInput">Translation (Portuguese)</label>
-          <input type="text" id="translationInput" placeholder="e.g., Olá" />
-        </div>
+    <!-- MAIN CONTENT -->
+    <main class="content">
+        <section class="dictionary-section">
+            <h2>Dictionary</h2>
 
-        <button id="addWordBtn">Add / Save</button>
-        <button id="translateBtn">Translate</button>
-      </div>
+            <div class="dictionary-card">
+                <!-- ADICIONAR PALAVRA -->
+                <div class="form-group">
+                    <label for="wordInput">Enter a word (English)</label>
+                    <input type="text" id="wordInput" placeholder="e.g., Hello" />
+                </div>
 
-      <div class="dictionary-list">
-        <h3>Saved Words</h3>
-        <ul id="wordsList"></ul>
-      </div>
-    </section>
-  </main>
+                <div class="form-group">
+                    <label for="translationInput">Translation (Portuguese)</label>
+                    <input type="text" id="translationInput" placeholder="e.g., Olá" />
+                </div>
+
+                <button id="addWordBtn">Add / Save</button>
+                <button id="translateBtn">Translate</button>
+            </div>
+
+            <div class="dictionary-list">
+                <h3>Saved Words</h3>
+                <ul id="wordsList"></ul>
+            </div>
+        </section>
+    </main>
 </div>
 
 <script src="../javascript/dicionario.js"></script>
 <script src="/javascript/session.js"></script>
-<script type="module">
-    import { loadSidebar } from "/components/sidebar/sidebar.js";
-    loadSidebar("explorar");
-  </script>
+
 </body>
 </html>

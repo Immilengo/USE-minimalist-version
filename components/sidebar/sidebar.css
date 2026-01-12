@@ -1,142 +1,247 @@
-/* =========================
-   BASE LAYOUT (OBRIGATÓRIO)
-========================= */
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-}
-
-.app {
-  display: flex;
-  min-height: 100vh;
-}
+/* /components/sidebar/sidebar.css */
 
 /* =========================
-   SIDEBAR
+   SIDEBAR UNIFICADA
 ========================= */
 .sidebar {
-  background: #ffffff;
-  border-right: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 90px;
+    z-index: 1000;
+    padding: 20px 0;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* LOGO */
+.sidebar .logo {
+    width: 42px;
+    height: 42px;
+    background: #2563eb;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
 
-  width: 90px;
-  min-height: 100vh; /* 👈 garante fundo até em baixo */
+/* MENU */
+.sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.sidebar .menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #6b7280;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.sidebar .menu a i {
+    font-size: 22px;
+    min-width: 24px;
+}
+
+.sidebar .menu a span {
+    display: none;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Estado ativo */
+.sidebar .menu a.active {
+    color: #2563eb;
+    background: #eff6ff;
+    font-weight: 500;
+}
+
+.sidebar .menu a:hover:not(.active) {
+    color: #4b5563;
+    background: #f9fafb;
+}
+
+/* Logout button */
+.sidebar .menu a.logout-btn {
+    color: #6b7280;
+}
+
+.sidebar .menu a.logout-btn:hover {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* USER */
+.sidebar .user {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.sidebar .avatar {
+    width: 40px;
+    height: 40px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* =========================
-   LOGO
+   DESKTOP GRANDE (sidebar expandida)
 ========================= */
-.logo {
-  width: 42px;
-  height: 42px;
-  background: #2563eb;
-  color: white;
-  border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: bold;
-  margin: 12px 0;
-}
-
-/* =========================
-   MENU
-========================= */
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  flex: 1; /* 👈 empurra o user para baixo */
-}
-
-.menu a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  color: #6b7280;
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 12px;
-
-  transition: 0.2s;
-}
-
-.menu a i {
-  font-size: 22px;
-}
-
-.menu a span {
-  font-size: 0.85rem;
-}
-
-.menu a.active,
-.menu a:hover {
-  color: #2563eb;
-  background: #eff6ff;
-}
-
-/* =========================
-   USER
-========================= */
-.user {
-  margin-bottom: 12px;
-}
-
-.avatar {
-  width: 38px;
-  height: 38px;
-  background: #3b82f6;
-  color: white;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media (min-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    
+    .sidebar .menu {
+        align-items: flex-start;
+    }
+    
+    .sidebar .menu a {
+        justify-content: flex-start;
+        width: 100%;
+        padding: 12px 16px;
+    }
+    
+    .sidebar .menu a span {
+        display: inline;
+    }
+    
+    .sidebar .logo {
+        align-self: flex-start;
+        margin-bottom: 40px;
+    }
+    
+    .sidebar .user {
+        align-self: flex-start;
+    }
 }
 
 /* =========================
    MOBILE (BOTTOM NAV)
 ========================= */
 @media (max-width: 767px) {
-  .sidebar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        height: 70px;
+        min-height: auto;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+        border-top: 1px solid #e5e7eb;
+        border-right: none;
+    }
 
-    height: 64px;
+    .sidebar .logo {
+        display: none;
+    }
+
+    .sidebar .menu {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0 10px;
+        gap: 0;
+    }
+
+    .sidebar .menu a {
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px;
+        flex: 1;
+        max-width: 70px;
+    }
+
+    .sidebar .menu a i {
+        font-size: 20px;
+    }
+
+    .sidebar .menu a span {
+        display: block;
+        font-size: 0.65rem;
+    }
+
+    .sidebar .user {
+        display: none;
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sidebar {
+        width: 90px;
+    }
+    
+    .sidebar .menu a span {
+        display: none;
+    }
+}
+
+/* =========================
+   BASE LAYOUT PARA TODAS AS TELAS
+========================= */
+.app {
+    display: flex;
+    min-height: 100vh;
     width: 100%;
+}
 
-    flex-direction: row;
-    justify-content: space-around;
-
-    border-top: 1px solid #e5e7eb;
-    border-right: none;
-    z-index: 100;
-  }
-
-  .logo,
-  .user {
-    display: none;
-  }
-
-  .menu {
-    flex-direction: row;
-    justify-content: space-around;
+/* Conteúdo principal ajustado para sidebar */
+.content {
     flex: 1;
-  }
+    margin-left: 90px;
+    width: calc(100% - 90px);
+    min-height: 100vh;
+    padding: 24px;
+    background: #f8fafc;
+}
 
-  .menu a span {
-    display: none;
-  }
+/* Ajuste para desktop grande */
+@media (min-width: 1024px) {
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+/* Ajuste para mobile */
+@media (max-width: 767px) {
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+        padding-bottom: 90px; /* Espaço para sidebar mobile */
+    }
 }
