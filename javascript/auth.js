@@ -109,7 +109,7 @@ function register() {
 
         // Adicionar dados padrão
         tempUser.online = true;
-        tempUser.avatar = "/static/img/default-avatar.png";
+        tempUser.avatar = "";
         tempUser.avgMinutes = 30;
         tempUser.rating = 4.5;
         tempUser.country = "Angola";
@@ -162,6 +162,8 @@ function login() {
             rating: user.rating,
             country: user.country
         }));
+        localStorage.setItem("logged_user_email", user.email);
+        localStorage.removeItem("use_demo_logged_out");
 
         // Redireciona para a página inicial
         window.location.href = "/html/index.html";

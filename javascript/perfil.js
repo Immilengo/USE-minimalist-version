@@ -51,12 +51,13 @@ let user = JSON.parse(localStorage.getItem("loggedUser")) || {
     user.rating = Number(ratingInput.value);
   
     localStorage.setItem("loggedUser", JSON.stringify(user));
-  
+    localStorage.setItem("logged_user_email", user.email);
+
     updateForm();
     alert("Profile updated successfully!");
   };
   function sair(){
     if(confirm("Tem a certeza que deseja sair?")){
-      window.location.href="home.html";
+      window.location.href="/html/auth.html";
     }
   }

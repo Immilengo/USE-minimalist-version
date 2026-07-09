@@ -12,7 +12,7 @@ document.querySelectorAll('.quiz button').forEach(btn => {
 
 function sair(){
   if(confirm("Tem a certeza que deseja sair?")){
-    window.location.href="home.html";
+    window.location.href="/html/auth.html";
   }
 }
 function status(){

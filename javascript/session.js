@@ -14,6 +14,7 @@ function isLoggedIn() {
 function logout() {
     if (confirm("Tem certeza que deseja sair?")) {
         localStorage.removeItem("loggedUser");
+        localStorage.setItem("use_demo_logged_out", "1");
         window.location.href = "/html/auth.html";
     }
 }
@@ -58,4 +59,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fazer logout globalmente disponível
     window.sair = logout;
 });
-
